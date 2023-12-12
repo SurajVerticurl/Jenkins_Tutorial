@@ -12,7 +12,7 @@
 
         sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
-- install Docker 
+- Install Docker 
 
         https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script
 
