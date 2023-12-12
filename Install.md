@@ -37,11 +37,12 @@
     Default Password : `admin`
   
 
-  #### Reference
+  #### Reference:
+  
     https://www.jenkins.io/doc/book/installing/linux/#debianubuntu
 
-    Sonarqube:
+    - Sonarqube:
     https://www.youtube.com/watch?v=KsTMy0920go
 
-    Freestyle and Pipeline Jobs:
+    - Freestyle and Pipeline Jobs:
     https://www.youtube.com/watch?v=IOUm1lw7F58
