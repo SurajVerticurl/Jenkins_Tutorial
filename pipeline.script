@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+
+    stages {
+            
+            stage('SonarQube Analysis') {
+            steps {
+                script {
+                    def scannerHome = tool 'sonarscanner'
+                    withCredentials([string(credentialsId: 'sonarscanner', variable: 'SONAR_PROJECT_KEY')]) {
+                        withSonarQubeEnv('sonarserver') {
+                            sh "${scannerHome}/bin/sonar-scanner \
+                                -Dsonar.projectKey=sonarscanner \
+                                -Dsonar.sources=."
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Build and Deploy') {
+            steps {
+                script {
+                    sh 'docker run -d -p 5001:5001 get-home-parameter'
+                    sh 'docker login -u surajkarthicverticurl -p docker@123'
+                    sh 'docker tag get-home-parameter:latest surajkarthicverticurl/get-home-parameter:latest'
+                    sh 'docker push surajkarthicverticurl/get-home-parameter:latest'
+                    sh "kubectl run my-pod --image=surajkarthicverticurl/get-home-parameter:latest --restart=Never"
+                }
+            }
+        }
+    }
+}
+
+
